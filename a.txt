@@ -1,0 +1,40 @@
+def find_pos(arr, val):
+    for i, a in enumerate(arr):
+        if a == val:
+            return i
+    return -1
+
+def oe(labels):
+    new_labels = []
+    unique_l = []
+    for label in labels:
+        if label not in unique_l:
+            unique_l.append(label)
+    for label in labels:
+        pos = find_pos(unique_l, label)
+        if pos == -1:
+            raise Exception()
+        new_labels.append(pos)
+    return new_labels
+
+def ohe(labels):
+    new_labels = []
+    unique_l = []
+    for label in labels:
+        if label not in unique_l:
+            unique_l.append(label)
+    for label in labels:
+        pos = find_pos(unique_l, label)
+        if pos == -1:
+            raise Exception()
+        new_val = []
+        for i in range(0, pos):
+            new_val.append(0)
+        new_val.append(1)
+        for i in range(pos, len(unique_l)-1):
+            new_val.append(0)
+        new_labels.append(new_val)
+    return new_labels
+
+labels = ['batman', 'superman', 'spiderman', 'batman', 'dog', 'superman']
+print(ohe(labels))
